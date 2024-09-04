@@ -15,7 +15,7 @@ export default function Example(prop) {
                         {prop.lineOne}
                         </p>
                     </div>
-                    <Link to={prop.link} className="flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-indigo-600 font-semibold py-4 px-8 transition-all duration-500">
+                    <Link to={prop.link} className="flex items-center gap-2 bg-white rounded-full shadow-sm text-lg text-yellow-900 font-semibold py-4 px-8 transition-all duration-500">
                         Get In Touch
                         <ArrowRightIcon className="h-5 w-5" />
                     </Link>
