@@ -5,7 +5,7 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 
 export default function Example() {
     return (
-        <Disclosure as="nav" className="flex items-center h-28 mb-6">
+        <Disclosure as="nav" className="flex items-center h-28">
             <div className='flex w-full px-4'> 
                 <div className='w-1/2'>
                     <Link to='/' className='text-2xl font-black'>#VANLIFE</Link>
