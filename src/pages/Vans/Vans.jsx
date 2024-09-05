@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
-import VanRental from "../components/van/VanElement"
+import VanRental from "../../components/van/VanElement"
 
-import '../server'
+import '../../server'
 
 export default function Vans() {
 
