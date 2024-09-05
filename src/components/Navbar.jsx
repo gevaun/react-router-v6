@@ -10,8 +10,9 @@ export default function Example() {
                 <div className='w-1/2'>
                     <Link to='/' className='text-2xl font-black'>#VANLIFE</Link>
                 </div>
-                <div className='w-1/2 flex justify-end'>
+                <div className='w-1/2 flex justify-end space-x-10'>
                     <Link to={'/about'} className='text-2xl font-medium'>About</Link>
+                    <Link to={'/vans'} className='text-2xl font-medium ml-4'>Vans</Link>
                 </div>
             </div>
         </Disclosure>
