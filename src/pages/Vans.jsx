@@ -20,7 +20,7 @@ export default function Vans() {
     return (
         <div>
             <h1 className="text-4xl font-bold pb-4">Product Information</h1>
-            <div className=" grid grid-cols-2 gap-4 flex-wrap justify-center">
+            <div className=" grid grid-cols-2 gap-6 flex-wrap justify-center">
                 {vanElements}
             </div>
         </div>
