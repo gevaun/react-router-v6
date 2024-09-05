@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import VanRental from "../components/VanElement"
+import VanRental from "../components/van/VanElement"
 
 import '../server'
 

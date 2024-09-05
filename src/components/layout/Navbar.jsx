@@ -4,6 +4,17 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 
 
 export default function Example() {
+
+    const navItems = [
+        { name: 'About', link: '/about' },
+        { name: 'Vans', link: '/vans' },
+        { name: 'Host', link: '/host' }
+    ]
+
+    const navItemElements = navItems.map((item, index) => (
+        <Link key={index} to={item.link} className='text-2xl font-medium'>{item.name}</Link>
+    ))
+
     return (
         <Disclosure as="nav" className="flex items-center h-28">
             <div className='flex w-full px-4'> 
@@ -11,8 +22,7 @@ export default function Example() {
                     <Link to='/' className='text-2xl font-black'>#VANLIFE</Link>
                 </div>
                 <div className='w-1/2 flex justify-end space-x-10'>
-                    <Link to={'/about'} className='text-2xl font-medium'>About</Link>
-                    <Link to={'/vans'} className='text-2xl font-medium ml-4'>Vans</Link>
+                    {navItemElements}
                 </div>
             </div>
         </Disclosure>

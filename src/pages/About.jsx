@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import AboutHero from '../assets/images/about-hero.png';
-import CTA from '../components/CTA';
+import CTA from '../components/van/CTA';
 
 export default function About() {
     return (
