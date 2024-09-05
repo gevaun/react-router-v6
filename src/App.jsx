@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
+import Layout from './components/layout/Layout'
 import Home from './pages/Home'
 import About from './pages/About'
 import Vans from './pages/Vans'
@@ -11,13 +11,14 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
-        <div className='container mx-auto max-w-7xl px-4 py-6'>
+        <div className=''>
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path='/vans' element={<Vans />}></Route>
-            <Route path='/vans/:id' element={<VanDetail />}></Route>
+            <Route element={<Layout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path='/vans' element={<Vans />}></Route>
+              <Route path='/vans/:id' element={<VanDetail />}></Route>
+            </Route>
           </Routes>
         </div>
       </BrowserRouter>
