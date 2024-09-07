@@ -18,7 +18,7 @@ export default function Vans() {
     return (
         <div>
             <div className='py-12'>
-                <h1 className="text-4xl font-bold">Your listed van</h1>
+                <h1 className="text-4xl font-bold">Your listed vans</h1>
             </div>
             <div className='space-y-4'>
                 {vanElement}
