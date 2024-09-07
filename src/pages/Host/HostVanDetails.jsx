@@ -37,7 +37,7 @@ export default function HostVanDetails() {
     return (
         <div className="space-y-4">
             <Link to=".." relative='path' className="flex w-fit py-12">
-                <ArrowLeftIcon className="w-4" /><span className="underline underline-offset-4">Back to all vans</span>
+                <ArrowLeftIcon className="w-4" /><span className="hover:underline underline-offset-4">Back to all vans</span>
             </Link>
             <div className="space-y-4 p-12 border border-cunrrent rounded-lg">
                 <div className="flex">
