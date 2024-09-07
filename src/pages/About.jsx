@@ -5,7 +5,7 @@ export default function About() {
     return (
         <div>
             <div className='flex w-full justify-center '>
-                <img src={AboutHero} alt="About Hero" />
+                <img src={AboutHero} alt="About Hero" className='rounded-lg'/>
             </div>
             <div className="">
                 <h1 className='text-6xl font-bold py-6'>Don’t squeeze in a sedan when you could relax in a van.</h1>
