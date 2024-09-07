@@ -5,7 +5,7 @@ export default function HostLayout() {
     const navItems = [
         { name: 'Dashboard', link: '' },
         { name: 'Income', link: 'income' },
-        { name: 'Vans', link: '/vans' },
+        { name: 'Vans', link: 'vans' },
         { name: 'Reviews', link: 'reviews' }
     ]
 

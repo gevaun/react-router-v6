@@ -7,6 +7,8 @@ import Vans from './pages/Vans/Vans'
 import VanDetail from './pages/Vans/VanDetail'
 import Dashboard from './pages/Host/Dashboard'
 import Income from './pages/Host/Income'
+import HostVans from './pages/Host/Vans'
+import HostVanDetails from './pages/Host/VanDetails'
 import Reviews from './pages/Host/Reviews'
 
 import './server'
@@ -24,6 +26,8 @@ function App() {
             <Route element={<HostLayout />} path='/host'>
               <Route index element={<Dashboard />} />
               <Route path='income' element={<Income />} />
+              <Route path='vans' element={<HostVans />} />
+              <Route path='vans/:id' element={<HostVanDetails />} />
               <Route path='reviews' element={<Reviews />} />
             </Route>
           </Route>
