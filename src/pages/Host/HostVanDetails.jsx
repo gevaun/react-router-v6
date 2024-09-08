@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, NavLink } from "react-router-dom";
+import { useParams, Link, NavLink, Outlet } from "react-router-dom";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
 export default function HostVanDetails() {
@@ -13,26 +13,22 @@ export default function HostVanDetails() {
             .then(data => setVan(data.vans));
     }, [params.id]);
 
-    const vanDetailsElement = (
-        <div className="space-y-2">
-            <p><span className="font-medium">Name:</span> {van.name}</p>
-            <p><span className="font-medium">Category:</span> {van.type}</p>
-            <p><span className="font-medium">Description:</span> {van.description}</p>
-            <p><span className="font-medium">Visibility:</span> ${van.price}/day</p>
-        </div>
-    )
-    
-    const vanPricingElement = (
-        <div className="space-y-2">
-            <p><span className="font-medium">Price:</span> ${van.price}/day</p>
-        </div>
-    )
-    
-    const vanPhotosElement = (
-        <div className="space-y-2">
-            <img src={van.imageUrl} alt={`Image of ${van.name}`} />
-        </div>
-    )
+    const navItems = [
+        { name: 'Details', link: '' },
+        { name: 'Pricing', link: 'pricing' },
+        { name: 'Photos', link: 'photos' }
+    ]
+
+    const navItemElements = navItems.map((item, index) => (
+        <NavLink
+            key={index}
+            to={item.link}
+            end
+            className={({ isActive }) => isActive ? 'font-bold underline underline-offset-4' : ""}
+        >
+            {item.name}
+        </NavLink>
+    ))
 
     return (
         <div className="space-y-4">
@@ -56,14 +52,13 @@ export default function HostVanDetails() {
                         </h2>
                     </div>
                 </div>
-                <div className="flex">
-                    Details
-                    Pricing
-                    Photos
-                    
+                <div className="flex space-x-10 text-md">
+                    {navItemElements}
                 </div>
                 <div className="space-y-2">
-                    {vanDetailsElement}
+                    <Outlet
+                        context={{van}}
+                    />
                 </div>
             </div>
         </div>

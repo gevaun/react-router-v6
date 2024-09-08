@@ -10,11 +10,11 @@ export default function HostLayout() {
     ]
 
     const navItemElements = navItems.map((item, index) => (
-        <NavLink 
-            key={index} 
+        <NavLink
+            key={index}
             to={item.link}
             end
-            className={({isActive}) => isActive ? 'font-bold underline underline-offset-4' : ""}
+            className={({ isActive }) => isActive ? 'text-lg font-bold underline underline-offset-4' : 'text-lg opacity-75 transition-all duration-200 hover:opacity-100'}
         >
             {item.name}
         </NavLink>
