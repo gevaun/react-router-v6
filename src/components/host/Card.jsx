@@ -3,10 +3,10 @@ import { NavLink } from "react-router-dom";
 export default function Card(props) {
     return (
         <div className="">
-            <NavLink to={`${props.item.id}`} className="block border border-gray-200 rounded-lg hover:shadow-sm focus:outline-none dark:border-neutral-700" >
+            <NavLink to={props.item.id} className="block border border-gray-200 rounded-lg hover:shadow-sm focus:outline-none dark:border-neutral-700" >
                 <div className="relative flex items-center overflow-hidden">
                     <img 
-                        className="w-32 sm:w-48 h-full absolute inset-0 object-cover rounded-s-lg"
+                        className="w-32 sm:w-48 h-full absolute inset-0 object-cover rounded-lg"
                         src={props.item.imageUrl} 
                         alt="Blog Image" 
                     />
