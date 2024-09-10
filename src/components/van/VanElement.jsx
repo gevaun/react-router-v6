@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 export default function VanRental(props) {
 
-    console.log(props)
-
     const getColorByType = (type) => {
         switch (type) {
             case 'simple':
@@ -31,7 +29,7 @@ export default function VanRental(props) {
                     <h2 className="text-lg">
                         <span className="font-medium">${props.item.price}</span>/day
                     </h2>
-                    <p className={`py-2.5 px-6 w-fit text-md bg-${colorClass}-500 text-white rounded-lg cursor-pointer font-semibold text-center shadow-xs transition-all duration-300 hover:bg-${colorClass}-700`}>{props.item.type}</p>
+                    <p className={`py-2.5 px-4 w-fit text-md bg-amber-500 text-white rounded-lg font-semibold text-center`}>{props.item.type}</p>
                 </div>
             </Link>
         </div>
