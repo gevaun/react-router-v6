@@ -60,7 +60,7 @@ export default function Vans() {
       <div className="space-x-10 py-8">
         {vanTypesButtonElements}
         {typeFilter && (
-          <NavLink to="." className="">
+          <NavLink to="." className="opacity-75 hover:opacity-100">
             Clear Filters
           </NavLink>
         )}
