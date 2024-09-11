@@ -1,18 +1,27 @@
 import { useState, useEffect } from "react";
 import { NavLink, useSearchParams } from "react-router-dom";
 import VanRental from "../../components/van/VanElement";
+import { getVans } from "../../utils/api";
 
 import "../../server";
 
 export default function Vans() {
   let [searchParams, setSearchParams] = useSearchParams();
   const [vans, setVans] = useState([]);
+  // Extract the type filter from the search params
   const typeFilter = searchParams.get("type");
+  // Create a loading state that we will use to show while the vans are being fetched
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetch("/api/vans")
-      .then((response) => response.json())
-      .then((data) => setVans(data.vans));
+    // Fetch the vans when the component mounts
+    async function loadVans() {
+      setLoading(true);
+      const vans = await getVans();
+      setVans(vans);
+      setLoading(false);
+    }
+    loadVans();
   }, []);
 
   // Extract unique van types
@@ -51,6 +60,15 @@ export default function Vans() {
   const vanElements = filteredVans.map((van) => (
     <VanRental key={van.id} item={van} />
   ));
+
+  // handle loading state
+  if (loading) {
+    return (
+      <div className='flex justify-center'>
+        <span className="">Loading...</span>
+      </div>
+    );
+  }
 
   return (
     <div>
