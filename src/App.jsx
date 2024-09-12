@@ -26,15 +26,10 @@ import "./server";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<Layout />}>
+    <Route path="/" element={<Layout />} errorElement={<Error />}>
       <Route index element={<Home />} />
       <Route path="about" element={<About />} />
-      <Route 
-        path="vans" 
-        element={<Vans /> } 
-        loader={vansLoader}
-        errorElement={<Error />}
-      />
+      <Route path="vans" element={<Vans />} loader={vansLoader} />
       <Route path="vans/:id" element={<VanDetail />}></Route>
       <Route path="/host" element={<HostLayout />}>
         <Route index element={<Dashboard />} />
@@ -53,9 +48,7 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return (
-    <RouterProvider router={router}/>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
