@@ -1,28 +1,21 @@
 import { useState, useEffect } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink, useSearchParams, useLoaderData } from "react-router-dom";
 import VanRental from "../../components/van/VanElement";
 import { getVans } from "../../utils/api";
 
 import "../../server";
 
+export function loader() {
+    return getVans();
+} 
+
 export default function Vans() {
   let [searchParams, setSearchParams] = useSearchParams();
-  const [vans, setVans] = useState([]);
-  // Extract the type filter from the search params
   const typeFilter = searchParams.get("type");
-  // Create a loading state that we will use to show while the vans are being fetched
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    // Fetch the vans when the component mounts
-    async function loadVans() {
-      setLoading(true);
-      const vans = await getVans();
-      setVans(vans);
-      setLoading(false);
-    }
-    loadVans();
-  }, []);
+  // Handle error state
+  const [error, setError] = useState(null);
+  // Extract the data from the loader
+  const vans = useLoaderData();
 
   // Extract unique van types
   const uniqueVanTypes = [...new Set(vans.map((van) => van.type))];
@@ -61,14 +54,10 @@ export default function Vans() {
     <VanRental key={van.id} item={van} />
   ));
 
-  // handle loading state
-  if (loading) {
-    return (
-      <div className='flex justify-center'>
-        <span className="">Loading...</span>
-      </div>
-    );
-  }
+  // handle error state
+  if (error) {
+    return <h1 aria-live="assertive">There was an error: {error.message}</h1>
+}
 
   return (
     <div>
