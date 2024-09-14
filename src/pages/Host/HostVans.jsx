@@ -1,19 +1,18 @@
 import { useState, useEffect } from 'react'
+import { useLoaderData } from 'react-router-dom'
+import { getHostVans } from '../../utils/api'
 import Card from '../../components/host/Card'
 
+export function loader() {
+    return getHostVans()
+}
+
 export default function Vans() {
-    
-    const [vans, setVans] = useState([])
+    // Use the useLoaderData hook to get the data that was loaded by the loader
+    const vans = useLoaderData()
 
-    useEffect(() => {
-        fetch('/api/vans')
-            .then(response => response.json())
-            .then(data => setVans(data.vans))
-    }, [])
-
+// Create a new array of Card components using the data that was loaded
     const vanElement = vans.map((van, index) => <Card key={index} item={van} />)
-    
-    console.log(vans)
 
     return (
         <div>

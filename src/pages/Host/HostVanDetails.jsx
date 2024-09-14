@@ -1,17 +1,16 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, NavLink, Outlet } from "react-router-dom";
+import { useParams, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../utils/api";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
+// Create a loader and return the getHostVans function
+export function loader({ params }) {
+    return getHostVans(params.id);
+}
+
 export default function HostVanDetails() {
-
-    const params = useParams();
-    const [van, setVan] = useState({});
-
-    useEffect(() => {
-        fetch(`/api/vans/${params.id}`)
-            .then(response => response.json())
-            .then(data => setVan(data.vans));
-    }, [params.id]);
+    // Use the useLoaderData hook to get the data that was loaded by the loader
+    const van = useLoaderData();
 
     const navItems = [
         { name: 'Details', link: '' },

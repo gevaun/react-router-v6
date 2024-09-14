@@ -1,19 +1,20 @@
-import { useEffect, useState } from "react";
-import { useParams, Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useLoaderData } from "react-router-dom";
+import { getVans } from "../../utils/api";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
+export function loader({ params }) {
+  console.log(params);
+  return getVans(params.id);
+}
+
+
 export default function VanDetail() {
-  const params = useParams();
-  const [van, setVan] = useState({});
+  // Use the useLoaderData hook to get the data that was loaded by the loader
+  const van = useLoaderData();
   const location = useLocation()
+
   const search = location.state?.search || "";
   const type = location.state?.type || "all";
-
-  useEffect(() => {
-    fetch(`/api/vans/${params.id}`)
-      .then((response) => response.json())
-      .then((data) => setVan(data.vans));
-  }, [params.id]);
 
   return (
     <div className="space-y-4">
