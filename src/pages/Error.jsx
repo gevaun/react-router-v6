@@ -3,7 +3,6 @@ import { ChevronLeftIcon } from "@heroicons/react/16/solid";
 
 export default function Error() {
   const error = useRouteError();
-  console.error(error);
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-amber-50 dark:bg-zinc-900 dark:text-white">
@@ -25,7 +24,7 @@ export default function Error() {
               Oops, something went wrong.
             </p>
             <p className="text-gray-600 dark:text-neutral-400">
-              {error.message}
+              {error.message && error.message}
             </p>
             <div className="mt-5 flex flex-col justify-center items-center gap-2 sm:flex-row sm:gap-3">
               <Link
