@@ -1,13 +1,12 @@
 import { useRouteError, Link } from "react-router-dom";
 import { ChevronLeftIcon } from "@heroicons/react/16/solid";
-import Footer from "./Footer";
 
 export default function Error() {
   const error = useRouteError();
   console.error(error);
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-amber-50">
+    <div className="flex items-center justify-center min-h-screen bg-amber-50 dark:bg-zinc-900 dark:text-white">
       <div className="max-w-[50rem] flex flex-col mx-auto">
         <header className="mb-auto flex justify-center z-50 w-full py-4">
           <nav className="px-4 sm:px-6 lg:px-8">
