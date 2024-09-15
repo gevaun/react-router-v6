@@ -2,8 +2,7 @@ import { Link, useLocation, useLoaderData } from "react-router-dom";
 import { getVans } from "../../utils/api";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
-export function loader({ params }) {
-  console.log(params);
+export async function loader({ params }) {
   return getVans(params.id);
 }
 

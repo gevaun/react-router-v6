@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
 import { useParams, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../utils/api";
+import { requireAuth } from "../../utils/utils";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
 // Create a loader and return the getHostVans function
-export function loader({ params }) {
+export async function loader({ params }) {
+    await requireAuth();
     return getHostVans(params.id);
 }
 

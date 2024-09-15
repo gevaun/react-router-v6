@@ -1,7 +1,13 @@
 import { useState, useId } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+
+export function loader({ request }) {
+  return new URL(request.url).searchParams.get('message')
+}
+
 
 export default function Login() {
+  const message = useLoaderData();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,6 +31,9 @@ export default function Login() {
   return (
     <div className="flex flex-col items-center h-screen ">
       <h1 className="text-3xl font-bold">Sign in to your account</h1>
+      <div className='h-12 p-4'>
+        {message && <p className="opacity-75">{message}</p>}
+      </div>
       <div>
         <form className="flex flex-col space-y-4 mt-4" onSubmit={handleSubmit}>
           <label htmlFor="{`${id}-email`}">Email</label>
