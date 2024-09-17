@@ -1,5 +1,5 @@
 import { useState, useId } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
 import { loginUser } from "../utils/api";
 
 export function loader({ request }) {
@@ -14,6 +14,7 @@ export default function Login() {
   });
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -28,8 +29,10 @@ export default function Login() {
     setStatus("submitting");
     setError(null);
     loginUser(formData)
-      .then((data) => console.log(data))
-      .catch(err => setError(err))
+      .then((data) => {
+        navigate("/host"), { replace: true };
+      })
+      .catch((err) => setError(err))
       .finally(() => setStatus("idle"));
   }
 
