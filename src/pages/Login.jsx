@@ -13,6 +13,7 @@ export async function action({ request }) {
   loginUser({ email, password })
   const data = await loginUser({ email, password });
   console.log(data);
+  localStorage.setItem("loggedin", true);
   return null;
 }
 
