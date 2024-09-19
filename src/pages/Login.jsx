@@ -1,5 +1,11 @@
 import { useState, useId } from "react";
-import { Link, useLoaderData, useNavigate, Form } from "react-router-dom";
+import {
+  Link,
+  useLoaderData,
+  useNavigate,
+  Form,
+  redirect,
+} from "react-router-dom";
 import { loginUser } from "../utils/api";
 
 export function loader({ request }) {
@@ -10,11 +16,15 @@ export async function action({ request }) {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
-  loginUser({ email, password })
+  loginUser({ email, password });
   const data = await loginUser({ email, password });
   console.log(data);
   localStorage.setItem("loggedin", true);
-  return null;
+  // redirect("/host");
+  const response = redirect("/host");
+  response.body = true; // It's silly, but it works
+  return response;
+  // return null;
 }
 
 export default function Login() {
@@ -23,7 +33,6 @@ export default function Login() {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-
   const id = useId();
 
   return (
@@ -31,11 +40,17 @@ export default function Login() {
       <div>
         <h1 className="text-3xl font-bold">Sign in to your account</h1>
         <div className="h-12 p-4"></div>
-        {message && <p className="opacity-75">{message}</p>}
-        {error && <p className="opacity-75">{error.message}</p>}
+        {message && (
+          <p className="opacity-75 flex justify-center text-red-700 font-medium">
+            {message}
+          </p>
+        )}
+        {error && (
+          <p className="opacity-75 flex justify-center">{error.message}</p>
+        )}
       </div>
       <div>
-        <Form method="post" className="flex flex-col space-y-4 mt-4">
+        <Form method="post" className="flex flex-col space-y-4 mt-4" replace>
           <label htmlFor={`${id}-email`}>Email</label>
           <input
             type="email"
