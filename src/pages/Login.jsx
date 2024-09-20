@@ -5,6 +5,7 @@ import {
   useNavigate,
   Form,
   redirect,
+  useActionData
 } from "react-router-dom";
 import { loginUser } from "../utils/api";
 
@@ -17,22 +18,20 @@ export async function action({ request }) {
   const email = formData.get("email");
   const password = formData.get("password");
   loginUser({ email, password });
-  const data = await loginUser({ email, password });
-  console.log(data);
-  localStorage.setItem("loggedin", true);
-  // redirect("/host");
-  const response = redirect("/host");
-  response.body = true; // It's silly, but it works
-  return response;
-  // return null;
+  try {
+    const data = await loginUser({ email, password });
+    localStorage.setItem("loggedin", true);
+    const response = redirect("/host");
+    response.body = true; // It's silly, but it works
+    return response;
+  } catch (error) {
+    return error.message;
+  }
 }
 
 export default function Login() {
   const message = useLoaderData();
-  const [status, setStatus] = useState("idle");
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
+  const errorMessage = useActionData();
   const id = useId();
 
   return (
@@ -40,13 +39,14 @@ export default function Login() {
       <div>
         <h1 className="text-3xl font-bold">Sign in to your account</h1>
         <div className="h-12 p-4"></div>
-        {message && (
+        {errorMessage ? 
+            <p className="opacity-75 flex justify-center">{errorMessage}</p>
+          :
+          message &&
+            (
           <p className="opacity-75 flex justify-center text-red-700 font-medium">
             {message}
           </p>
-        )}
-        {error && (
-          <p className="opacity-75 flex justify-center">{error.message}</p>
         )}
       </div>
       <div>
