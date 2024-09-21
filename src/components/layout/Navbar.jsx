@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, redirect } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
 
@@ -23,6 +23,14 @@ export default function Example() {
     </NavLink>
   ));
 
+  function fakeLogout() {
+    console.log("logging out");
+    localStorage.removeItem("loggedin");
+  };
+
+  const loginStatus =
+    localStorage.getItem("loggedin") === "true" ? true : false;
+
   return (
     <Disclosure as="nav" className="flex items-center h-28">
       <div className="flex w-full px-4">
@@ -40,6 +48,14 @@ export default function Example() {
           >
             <UserCircleIcon className="w-6" />
           </NavLink>
+          {loginStatus && (
+            <button
+              onClick={fakeLogout}
+              className="self-center text-2xl font-medium opacity-75 transition-all duration-200 hover:opacity-100"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </div>
     </Disclosure>
