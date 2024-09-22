@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useParams, Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
+import { Link, NavLink, Outlet, useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../utils/api";
 import { requireAuth } from "../../utils/utils";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";

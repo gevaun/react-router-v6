@@ -1,4 +1,4 @@
-import { NavLink, redirect } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Disclosure } from "@headlessui/react";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
 

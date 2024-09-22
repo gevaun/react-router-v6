@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import { getHostVans } from "../../utils/api";
 import { requireAuth } from "../../utils/utils";

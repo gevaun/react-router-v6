@@ -3,7 +3,6 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  redirect,
 } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import HostLayout from "./components/layout/HostLayout";
