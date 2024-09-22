@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import {
   NavLink,
   useSearchParams,
@@ -87,7 +87,9 @@ export default function Vans() {
       <div className="">
         <h1 className="text-4xl font-bold pb-4">Explore our van options</h1>
       </div>
+      <Suspense fallback={<div>Loading Vans...</div>}>
       <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+      </Suspense>
     </div>
   );
 }
