@@ -6,7 +6,7 @@ import {
   Form,
   redirect,
   useActionData,
-  useNavigation
+  useNavigation,
 } from "react-router-dom";
 import { loginUser } from "../utils/api";
 
@@ -24,10 +24,11 @@ export async function action({ request }) {
   const password = formData.get("password");
   loginUser({ email, password });
   await sleep(1000);
+  const pathname = new URL(request.url).searchParams.get("redirectTo");
   try {
     const data = await loginUser({ email, password });
     localStorage.setItem("loggedin", true);
-    const response = redirect("/host");
+    const response = redirect(pathname);
     response.body = true; // It's silly, but it works
     return response;
   } catch (error) {
@@ -46,14 +47,14 @@ export default function Login() {
       <div>
         <h1 className="text-3xl font-bold">Sign in to your account</h1>
         <div className="h-12 p-4"></div>
-        {errorMessage ? 
-            <p className="opacity-75 flex justify-center">{errorMessage}</p>
-          :
-          message &&
-            (
-          <p className="opacity-75 flex justify-center text-red-700 font-medium">
-            {message}
-          </p>
+        {errorMessage ? (
+          <p className="opacity-75 flex justify-center">{errorMessage}</p>
+        ) : (
+          message && (
+            <p className="opacity-75 flex justify-center text-red-700 font-medium">
+              {message}
+            </p>
+          )
         )}
       </div>
       <div>
@@ -76,10 +77,14 @@ export default function Login() {
           />
           <button
             type="submit"
-            className={`bg-orange-500 text-white px-4 py-2 rounded-md disabled:opacity-75 ${navigation.state === 'submitting' ? 'disabled' : 'hover:bg-orange-600'}`}
+            className={`bg-orange-500 text-white px-4 py-2 rounded-md disabled:opacity-75 ${
+              navigation.state === "submitting"
+                ? "disabled"
+                : "hover:bg-orange-600"
+            }`}
             disabled={navigation.state === "submitting"}
           >
-            {navigation.state === 'submitting' ? 'Logging in..' : 'Log in'}
+            {navigation.state === "submitting" ? "Logging in.." : "Log in"}
           </button>
         </Form>
       </div>

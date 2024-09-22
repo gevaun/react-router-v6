@@ -4,8 +4,8 @@ import { getHostVans } from "../../utils/api";
 import { requireAuth } from "../../utils/utils";
 import Card from "../../components/host/Card";
 
-export async function loader() {
-    await requireAuth();
+export async function loader({ request }) {
+    await requireAuth(request);
     return getHostVans();
 }
 

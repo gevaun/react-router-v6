@@ -5,8 +5,8 @@ import { requireAuth } from "../../utils/utils";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
 // Create a loader and return the getHostVans function
-export async function loader({ params }) {
-    await requireAuth();
+export async function loader({ params, request }) {
+    await requireAuth(request);
     return getHostVans(params.id);
 }
 
