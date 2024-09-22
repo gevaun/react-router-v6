@@ -26,6 +26,7 @@ export default function Example() {
   function fakeLogout() {
     console.log("logging out");
     localStorage.removeItem("loggedin");
+    window.location.reload();
   };
 
   const loginStatus =
