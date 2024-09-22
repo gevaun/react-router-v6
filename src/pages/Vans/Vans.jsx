@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense } from "react";
+import { useState, Suspense } from "react";
 import {
   NavLink,
   useSearchParams,
@@ -10,7 +10,6 @@ import VanRental from "../../components/van/VanElement";
 import { getVans } from "../../utils/api";
 
 import "../../server";
-import { render } from "react-dom";
 
 export function loader() {
   return defer({ vans: getVans() });
@@ -88,7 +87,7 @@ export default function Vans() {
         <h1 className="text-4xl font-bold pb-4">Explore our van options</h1>
       </div>
       <Suspense fallback={<div>Loading Vans...</div>}>
-      <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
+        <Await resolve={dataPromise.vans}>{renderVanElements}</Await>
       </Suspense>
     </div>
   );
