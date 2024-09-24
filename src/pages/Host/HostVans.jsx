@@ -3,7 +3,6 @@ import { useLoaderData, defer, Await } from "react-router-dom";
 import { getHostVans } from "../../utils/api";
 import { requireAuth } from "../../utils/utils";
 import Card from "../../components/host/Card";
-import { render } from "react-dom";
 
 export async function loader({ request }) {
     await requireAuth(request);
