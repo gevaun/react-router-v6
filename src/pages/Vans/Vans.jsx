@@ -19,7 +19,6 @@ export default function Vans() {
   let [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   // Handle error state
-  const [error, setError] = useState(null);
   // Extract the data from the loader
   // const vans = useLoaderData();
   const dataPromise = useLoaderData();
@@ -74,11 +73,6 @@ export default function Vans() {
         </div>
       </>
     );
-  }
-
-  // handle error state
-  if (error) {
-    return <h1 aria-live="assertive">There was an error: {error.message}</h1>;
   }
 
   return (

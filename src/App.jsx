@@ -22,7 +22,10 @@ import HostVanPricing from "./pages/Host/HostVanPricing";
 import HostVanPhotos from "./pages/Host/HostVanPhotos";
 import NotFound from "./pages/NotFound";
 import Error from "./pages/Error";
-import Login, { loader as loginLoader, action as loginAction } from "./pages/Login";
+import Login, {
+  loader as loginLoader,
+  action as loginAction,
+} from "./pages/Login";
 import { requireAuth } from "./utils/utils";
 
 import "./server";
@@ -52,11 +55,17 @@ const router = createBrowserRouter(
           element={<Income />}
           loader={async ({ request }) => await requireAuth(request)}
         />
-        <Route path="vans" element={<HostVans />} loader={hostVansLoader} />
+        <Route
+          path="vans"
+          element={<HostVans />}
+          loader={hostVansLoader}
+          errorElement={<Error />}
+        />
         <Route
           path="vans/:id"
           element={<HostVanDetails />}
           loader={hostVanDetailsLoader}
+          errorElement={<Error />}
         >
           <Route
             index
