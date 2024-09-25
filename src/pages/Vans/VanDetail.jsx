@@ -1,26 +1,22 @@
 import { Link, useLocation, useLoaderData } from "react-router-dom";
-import { getVans } from "../../utils/api";
+import { getVan } from "../../utils/api";
 import { ArrowLeftIcon } from "@heroicons/react/16/solid";
 
 export async function loader({ params }) {
-  return getVans(params.id);
+  return getVan(params.id);
 }
-
 
 export default function VanDetail() {
   // Use the useLoaderData hook to get the data that was loaded by the loader
   const van = useLoaderData();
-  const location = useLocation()
+  const location = useLocation();
 
   const search = location.state?.search || "";
   const type = location.state?.type || "all";
 
   return (
     <div className="space-y-4">
-      <Link 
-        to={`..${search}`}
-        relative="path"
-        className="flex w-fit">
+      <Link to={`..${search}`} relative="path" className="flex w-fit">
         <ArrowLeftIcon className="w-4" />
         <span className="underline underline-offset-4">{`Back to ${type} vans`}</span>
       </Link>
